@@ -1,0 +1,5 @@
+---
+- import_playbook: 00-prerequisites.yml
+- import_playbook: 01-control-plane.yml
+- import_playbook: 02-workers.yml
+- import_playbook: 03-deploy-app.yml

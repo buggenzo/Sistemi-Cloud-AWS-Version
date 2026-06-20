@@ -1,0 +1,13 @@
+*.pem
+terraform-aws/labsuser.pem
+
+k8s/secret.yaml
+
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+
+ansible/hosts.ini
+ansible/*.retry

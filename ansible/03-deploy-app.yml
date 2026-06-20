@@ -1,0 +1,31 @@
+---
+- name: Deploy dell'applicazione sul cluster Kubernetes
+  hosts: control_plane
+  become: true
+
+  tasks:
+    - name: Crea la cartella dei manifesti sul Master
+      file:
+        path: /home/ubuntu/k8s
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Copia tutti i file YAML della cartella locale k8s sul Master
+      copy:
+        src: ../k8s/
+        dest: /home/ubuntu/k8s/
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Esegui il deploy di tutta l'infrastruttura Kubernetes
+      command: kubectl apply -f /home/ubuntu/k8s/
+      environment:
+        KUBECONFIG: /home/ubuntu/.kube/config
+      register: deploy_output
+
+    - name: Mostra i dettagli del deploy
+      debug:
+        msg: "{{ deploy_output.stdout_lines }}"
