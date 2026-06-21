@@ -12,7 +12,4 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot  = true
   publicly_accessible  = false
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  lifecycle {
-    prevent_destroy = true
-  }
 }
