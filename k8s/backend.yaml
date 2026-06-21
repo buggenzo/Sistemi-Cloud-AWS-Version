@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: buggenzo/task-backend:v2
+          image: buggenzo/task-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           livenessProbe:
